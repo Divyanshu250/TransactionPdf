@@ -13,7 +13,7 @@ import UIKit
 
 protocol TransactionListViewInputs: AnyObject{
     func configure(entities: TransactionListEntities)
-    func reloadTableView()
+    func reloadTableView(haveData: Bool?)
     func showPdfOptions(url: URL?)
     func showToasMessage(msg: String?)
 }
@@ -42,6 +42,7 @@ class TransactionListViewController: UIViewController {
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var tableViewAndSearchViewSeparatorView: UIView!
     @IBOutlet weak var transactionTableView: UITableView!
+    @IBOutlet weak var noHistoryLabel: UILabel!
     
     // MARK: Variables
     internal var presenter: TransactionListViewOutputs?
@@ -78,24 +79,28 @@ class TransactionListViewController: UIViewController {
         viewSetUp()
         tableViewSetUp()
         configureSearchTextField()
+        noHistoryLabel.isHidden = true
     }
     
     func fontSetUp(){
         historyLabel.font = UIFont.customFont(family: .monaSansSemiBold, size: .size24)
         generatePdfBtn.titleLabel?.font = UIFont.customFont(family: .monaSansSemiBold, size: .size16)
         searchTextField.font = UIFont.customFont(family: .monaSansMedium, size: .size20)
+        noHistoryLabel.font = UIFont.customFont(family: .monaSansBold, size: .size20)
     }
     
     func textSetUp(){
         historyLabel.text = HistoryScreenText.historyText
         generatePdfBtn.setTitle(HistoryScreenText.myStatementText, for: .normal)
         searchTextField.placeholder = HistoryScreenText.searchTransactionText
+        noHistoryLabel.text = HistoryScreenText.noHistory
     }
         
     func colorSetUp(){
         historyLabel.textColor = Colors.blackColor.color
         generatePdfBtn.setTitleColor(Colors.blackColor.color, for: .normal)
         searchTextField.textColor = Colors.blackColor.color
+        noHistoryLabel.textColor = Colors.blackColor.color
     }
     
     func viewSetUp(){
@@ -105,6 +110,8 @@ class TransactionListViewController: UIViewController {
         searchBarView.layer.cornerRadius = 30
         searchBarView.backgroundColor = Colors.lightGreyColor.color
         tableViewAndSearchViewSeparatorView.backgroundColor = Colors.greyColor.color
+        generatePdfBtn.alpha = 0.5
+        generatePdfBtn.isEnabled = false
     }
     
     func tableViewSetUp(){
@@ -121,8 +128,10 @@ class TransactionListViewController: UIViewController {
         // Done button on keyboard
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
+
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissKeyboard))
-        toolbar.items = [doneButton]
+        toolbar.items = [flexibleSpace, doneButton]
         searchTextField.inputAccessoryView = toolbar
     }
 
@@ -151,9 +160,20 @@ extension TransactionListViewController: TransactionListViewInputs{
         
     }
     
-    func reloadTableView() {
+    func reloadTableView(haveData: Bool?) {
         DispatchQueue.main.async { [weak self] in
-            self?.transactionTableView.reloadData()
+            if haveData ?? false{
+                self?.generatePdfBtn.alpha = 1
+                self?.generatePdfBtn.isEnabled = true
+                self?.noHistoryLabel.isHidden = true
+                self?.transactionTableView.isHidden = false
+                self?.transactionTableView.reloadData()
+            }else{
+                self?.generatePdfBtn.alpha = 0.5
+                self?.generatePdfBtn.isEnabled = false
+                self?.noHistoryLabel.isHidden = false
+                self?.transactionTableView.isHidden = true
+            }
         }
     }
     

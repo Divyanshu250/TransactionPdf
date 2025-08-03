@@ -59,7 +59,7 @@ extension TransactionListPresenter: TransactionListViewOutputs{
         }else{
             entities.filteredTransactions = entities.transactionModel
         }
-        view.reloadTableView()
+        view.reloadTableView(haveData: entities.filteredTransactions != nil && entities.filteredTransactions?.count != 0 ? true : false)
     }
     
     
@@ -82,7 +82,7 @@ extension TransactionListPresenter: TransactionListInteractorOutputs{
         let validTransactions = transactions ?? []
         entities.transactionModel = validTransactions
         entities.filteredTransactions = validTransactions
-        view.reloadTableView()
+        view.reloadTableView(haveData: validTransactions.count != 0 ? true : false)
         
         if !isSuccess, let error = error {
             view.showToasMessage(msg: error)

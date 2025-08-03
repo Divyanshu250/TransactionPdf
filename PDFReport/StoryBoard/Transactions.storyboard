@@ -106,12 +106,19 @@
                                 <rect key="frame" x="0.0" y="216" width="393" height="636"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aIK-hl-3aY">
+                                <rect key="frame" x="196.66666666666666" y="426" width="0.0" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="a8S-Lj-vmy" secondAttribute="bottom" id="1rT-Ev-0XS"/>
                             <constraint firstItem="IIJ-Jj-AXx" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="3ue-7e-kOE"/>
+                            <constraint firstItem="aIK-hl-3aY" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="4jt-AW-4GC"/>
                             <constraint firstItem="a8S-Lj-vmy" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Bjo-Mz-oGv"/>
                             <constraint firstItem="a8S-Lj-vmy" firstAttribute="top" secondItem="xUe-TL-HQD" secondAttribute="bottom" id="Itk-ls-Efc"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="a8S-Lj-vmy" secondAttribute="trailing" id="Muj-F3-AVe"/>
@@ -122,6 +129,7 @@
                             <constraint firstItem="xUe-TL-HQD" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="ejr-r9-FhL"/>
                             <constraint firstItem="xUe-TL-HQD" firstAttribute="top" secondItem="IIJ-Jj-AXx" secondAttribute="bottom" id="euw-j3-R08"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="IIJ-Jj-AXx" secondAttribute="trailing" id="ffR-9Q-uZK"/>
+                            <constraint firstItem="aIK-hl-3aY" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="sVI-7O-M6U"/>
                             <constraint firstItem="IIJ-Jj-AXx" firstAttribute="top" secondItem="Gwg-Dr-jdf" secondAttribute="bottom" id="zcG-kC-AJE"/>
                         </constraints>
                     </view>
@@ -129,6 +137,7 @@
                         <outlet property="generatePdfBtn" destination="McO-mz-6jy" id="SRq-1z-Qw1"/>
                         <outlet property="generatePdfBtnView" destination="lHv-Hn-PnS" id="MZU-mQ-zUu"/>
                         <outlet property="historyLabel" destination="gT9-Qo-fAf" id="BxN-eO-kw3"/>
+                        <outlet property="noHistoryLabel" destination="aIK-hl-3aY" id="Fxf-YR-dQ8"/>
                         <outlet property="searchBarView" destination="Fyf-8t-JdS" id="23c-G9-eSa"/>
                         <outlet property="searchIconImageView" destination="kD8-lY-dPd" id="XV0-4a-hS4"/>
                         <outlet property="searchTextField" destination="Jha-Ya-rLK" id="qfl-uO-CV1"/>

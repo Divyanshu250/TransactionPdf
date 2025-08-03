@@ -13,4 +13,5 @@ struct HistoryScreenText{
     static let searchTransactionText = "Search Transactions..."
     static let paidTo = "Paid to"
     static let receivedFrom = "Received from"
+    static let noHistory = "No History"
 }
