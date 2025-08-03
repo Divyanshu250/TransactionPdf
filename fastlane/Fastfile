@@ -1,0 +1,20 @@
+default_platform(:ios)
+
+platform :ios do
+  desc "Build the iOS app"
+  lane :build do
+    build_app(
+      scheme: "PDFReport",
+      export_method: "development", # You can also use "ad-hoc"
+      export_options: {
+        compileBitcode: false
+      }
+    )
+  end
+
+  desc "CI Pipeline Lane"
+  lane :ci_pipeline do
+    build
+    puts "✅ Build complete (simulated upload to TestFlight)"
+  end
+end
